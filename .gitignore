@@ -1,0 +1,22 @@
+# Ignorar arquivos compilados
+*.class
+*.o
+*.exe
+
+# Ignorar dependências do Node.js
+node_modules/
+
+
+
+# Ignorar IDEs e editores
+.vscode/
+.idea/
+*.iml
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar credenciais e configurações locais
+.env
+config/secrets.yml
