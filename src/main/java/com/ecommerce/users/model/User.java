@@ -5,34 +5,36 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "users_token")
-@EntityListeners(AuditingEntityListener.class) // Habilita @CreatedDate e @LastModifiedDate
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "users")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "CPF", nullable = false)
+    @Column(unique = true, nullable = false)
     private String cpf;
 
-
-    @Column(name = "token", unique = true)
+    @Column(unique = false, nullable = false)
     private String token;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private List<String> roles; // Ex: ["ROLE_ADMIN", "ROLE_USER"]
 
     @CreatedDate
     @Column(updatable = false)

@@ -11,12 +11,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 @SpringBootApplication
-@EntityScan("com.ecommerce.users.model")  // Pacote correto de entidades
-@EnableJpaRepositories("com.ecommerce.users.repositories")  // Pacote correto de repositórios
+@EntityScan("com.ecommerce.users.model")
+@EnableJpaRepositories("com.ecommerce.users.repositories")
 @ConfigurationPropertiesScan("com.ecommerce.users.config")
-@ComponentScan(basePackages = {"com.ecommerce.users.service"})
-@Import(WebSecurityConfig.class)// Escaneia o pacote de serviços
+@Import(WebSecurityConfig.class)
 public class RestCodeApplication {
 	private static final Logger logger = LoggerFactory.getLogger(RestCodeApplication.class);
 

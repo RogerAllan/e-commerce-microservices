@@ -3,10 +3,6 @@
 *.o
 *.exe
 
-# Ignorar dependências do Node.js
-node_modules/
-
-
 
 # Ignorar IDEs e editores
 .vscode/

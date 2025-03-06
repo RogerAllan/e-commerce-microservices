@@ -1,0 +1,16 @@
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\config\JwtAuthenticationEntryPoint.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\config\WebSecurityConfig.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\controllers\JwtAuthenticationController.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\controllers\UserController.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\filter\JwtRequestFilter.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\model\JwtRefreshRequest.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\model\JwtRequest.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\model\JwtResponse.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\model\User.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\repositories\UserRepository.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\RestCodeApplication.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\security\JwtTokenUtil.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\service\JwtUserDetailsService.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\service\UserAlreadyExistsException.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\service\UserService.java
+C:\Users\roger\Desktop\Projetos\e-commerce\ecommerce-microservices\user-service\src\main\java\com\ecommerce\users\service\UserServiceImpl.java

@@ -1,6 +1,7 @@
 package com.ecommerce.users.controllers;
 
 import com.ecommerce.users.model.User;
+import com.ecommerce.users.service.UserAlreadyExistsException;
 import com.ecommerce.users.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user){
+    public ResponseEntity<User> registerUser(@RequestBody User user) throws UserAlreadyExistsException {
         User savedUser = userService.registerUser(user);
         return new ResponseEntity<> (savedUser, HttpStatus.CREATED);
     }
