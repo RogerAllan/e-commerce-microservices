@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/auth")
@@ -30,14 +31,13 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    // Endpoint de Login
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody JwtRequest request) {
         try {
             authenticate(request.getUsername(), request.getPassword());
-            final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
-            final String accessToken = jwtTokenUtil.generateAccessToken(userDetails);
-            final String refreshToken = jwtTokenUtil.generateRefreshToken(userDetails);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
+            String accessToken = jwtTokenUtil.generateAccessToken(userDetails);
+            String refreshToken = jwtTokenUtil.generateRefreshToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(accessToken, refreshToken));
         } catch (DisabledException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário desativado");
@@ -48,7 +48,6 @@ public class JwtAuthenticationController {
         }
     }
 
-    // Endpoint de Refresh Token
     @PostMapping("/refresh")
     public ResponseEntity<?> refreshToken(@RequestBody JwtRefreshRequest refreshRequest) {
         try {
@@ -69,8 +68,7 @@ public class JwtAuthenticationController {
         }
     }
 
-    // Metodo de Autenticação
-    private void authenticate(String username, String password) throws DisabledException, BadCredentialsException {
+    private void authenticate(String username, String password) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password)
         );

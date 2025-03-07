@@ -13,19 +13,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.function.Function;
 
+import static io.jsonwebtoken.Jwts.header;
+
 @Component
 public class JwtTokenUtil implements Serializable {
     @Serial
     private static final long serialVersionUID = -2550185165626007488L;
 
     @Value("${jwt.secret}")
-    private String secret;
+    public String secret;
 
     @Value("${jwt.access.expiration}")
-    private long accessExpiration;
+    public long accessExpiration;
 
     @Value("${jwt.refresh.expiration}")
-    private long refreshExpiration;
+    public long refreshExpiration;
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
@@ -57,8 +59,14 @@ public class JwtTokenUtil implements Serializable {
     }
     // Verifica expiração
     public Boolean isTokenExpired(String token) {
-        return getExpirationDateFromToken(token).before(new Date());
+        try {
+            Date expiration = getExpirationDateFromToken(token);
+            return expiration.before(new Date());
+        } catch (ExpiredJwtException e) {
+            return true;
+        }
     }
+
 
     // Gera access token
     public String generateAccessToken(UserDetails userDetails) {
@@ -70,19 +78,25 @@ public class JwtTokenUtil implements Serializable {
         return buildToken(userDetails.getUsername(), refreshExpiration);
     }
 
-    private String buildToken(String subject, long expiration) {
-        return Jwts.builder()
-                .subject(subject)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + expiration * 1000))
-                .signWith(getSigningKey())
-                .compact();
-    }
+        private String buildToken(String subject, long expiration) {
+            return Jwts.builder()
+                    .header()
+                    .and ()
+                    .subject(subject)
+                    .issuedAt(new Date())
+                    .expiration(new Date(System.currentTimeMillis() + expiration * 1000))
+                    .signWith(getSigningKey())
+                    .compact();
+        }
 
-    // Valida token
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+        try {
+            final String username = getUsernameFromToken(token);
+            return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+        } catch (ExpiredJwtException e) {
+            // Token expirado: retorna false sem propagar a exceção
+            return false;
+        }
     }
 
     public String refreshAccessToken(String refreshToken, UserDetails userDetails) {
